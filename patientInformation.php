@@ -29,7 +29,7 @@ include "header.php";
                         <?php
                                     $patients =  mysqli_query($con, "SELECT * FROM patient_information");?>
                         <div class="col-lg-12">
-                            <a href="pinformationexcel.php" class="btn btn-primary mb-2" target="_blank">EXPORT TO EXCEL</a>
+                            <a href="pinformationexcel.php" class="btn btn-primary mb-2" target="_blank">EXPORT TO CSV/EXCEL</a>
                             <div class="ibox float-e-margins">
                                 <div class="ibox-title">
                                     <h5>All Patients</h5>

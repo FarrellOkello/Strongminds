@@ -29,21 +29,6 @@ while ($row = mysqli_fetch_array($patientinformation)) {
     $pregnant = $row['pregnant'];
     $on_medications = $row['on_medications'];
 
-
-    //   $employee_id = $row['employee_id'];
-    //   $fullname = $row['fullname'];
-    //   $gender = $row['gender'];
-    //   $employeenumber = $row['employeenumber'];
-    //   $design_id = $row['designation'];
-    //   $status = $row['status'];
-    //   $ext = $row['ext'];
-    //   $dept2 =  mysqli_query($con, "SELECT * FROM designations WHERE designation_id='$design_id'");
-    //   $row2 =  mysqli_fetch_array($dept2);
-    //   $dept_id = $row2['department_id'];
-    //   $design = $row2['designation'];
-    //   $dept =  mysqli_query($con, "SELECT * FROM departments WHERE department_id='$dept_id'");
-    //   $row2 = mysqli_fetch_array($dept);
-    //   $dept_name = $row2['department'];
     $lineData = array($Firstname,$Lastname,$date,$email,$phone,$preferedContact,$dob,$age,$gender,$conditions,$allergies,$pregnant,$on_medications);
 
     fputcsv($f, $lineData, $delimiter);

@@ -1,7 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 include 'conn.php';
 $title = "Strong minds";
 include "header.php";
@@ -94,8 +91,7 @@ if (isset(
 
     if ((empty($firstName)) || empty($lastName) || empty($date)
     || empty($email) || empty($phone) || empty($dob)
-    || empty($age) ||empty($allergies)
-    /* || empty($pregnant)  */|| empty($gender)) {
+    || empty($age) ||empty($allergies)|| empty($gender)) {
         $errors[] = 'Kindly do not leave required fields empty';
     }
     if (!empty($errors)) {
