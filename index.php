@@ -76,16 +76,27 @@ if (isset(
     $gender = mysqli_real_escape_string($con, $_POST['gender']);
     $age = $_POST['age'] ?? '';
     $yesallergy = $_POST['yesallergy'] ?? '';
-    $prefered_contact = implode(",", $_POST['prefered_contact']);
-    $conditions = implode(",", $_POST['conditions']);
-    $medication = implode(",", $_POST['medication']);
+    if (isset($_POST['prefered_contact'])) {
+        $prefered_contact = implode(",", $_POST['prefered_contact']);
+    } else {
+        $prefered_contact = "None";
+    }
+    if (isset($_POST['conditions'])) {
+        $conditions = implode(",", $_POST['conditions']) ;
+    } else {
+        $conditions = "None";
+    }
+    if (isset($_POST['medication'])) {
+        $medication = implode(",", $_POST['medication']);
+    } else {
+        $medication = "None";
+    }
 
     if ((empty($firstName)) || empty($lastName) || empty($date)
     || empty($email) || empty($phone) || empty($dob)
-    || empty($age) || empty($prefered_contact) || empty($allergies)
-    || empty($pregnant) || empty($gender) || empty($conditions)
-    || empty($medication)) {
-        $errors[] = 'All Fields should not be blank';
+    || empty($age) ||empty($allergies)
+    /* || empty($pregnant)  */|| empty($gender)) {
+        $errors[] = 'Kindly do not leave required fields empty';
     }
     if (!empty($errors)) {
         foreach ($errors as $error) {
@@ -103,7 +114,7 @@ if (isset(
         ?>
                             <div class="alert alert-success">
                               <i class="fa fa-check">                                
-                              </i>Patient Information Successfully Added. </div>
+                              </i>Patient Information Successfully Added.</div>
                     <?php
     }
 }
@@ -111,24 +122,24 @@ if (isset(
         <form  method="post" name='form' class="form-horizontal" action="" 
         enctype="multipart/form-data">
         <fieldset>
-              <legend><h1>Health</h1></legend>
+              <legend><h1>Health Information</h1></legend>
         <hr/>
-        <!-- These are text inputs 0773535857 -->
+        <!-- These are text inputs  -->
         <label>First Name:  </label>  <br/>
-        <input type="text" name="firstName" placeholder="First Name"  class="form-control"  /> 
+        <input type="text" name="firstName" placeholder="First Name"  class="form-control" required /> 
         <br/>
         <label>Last Name:  </label>  <br/>
-        <input type="text" name="lastName" placeholder="Last Name"  class="form-control" />
+        <input type="text" name="lastName" placeholder="Last Name"  class="form-control" required/>
       <br/>
       <!-- this is a date input -->
         <label>Date:  </label><br/>  
-        <input type="date" name="date" class="form-control" />
+        <input type="date" name="date" class="form-control" required/>
       <br/>
         <label>Email:</label><br/>
-        <input type="text"  name="email" class="form-control" placeholder="Email"/>
+        <input type="email"  name="email" class="form-control" placeholder="Email" required/>
         <br/>
         <label>Phone:</label><br/>
-        <input type="mobile"  name="phone" class="form-control" placeholder="(000)-000-000"/>
+        <input type="mobile"  name="phone" class="form-control" placeholder="(000)-000-000" required/>
         <br/>
         <label>Prefered contact: </label><br/>
         <input type="checkbox" name="prefered_contact[]" value="Phone call" id="phone_call"/> Phone call
@@ -137,14 +148,14 @@ if (isset(
         <br/>
         <br/>
         <label>Date of Birth </label><br/>  
-        <input type="date" name="dob" class="form-control" id="DOB" onChange="ageCalculator()"/>
+        <input type="date" name="dob" class="form-control" id="DOB" onChange="ageCalculator()" required />
       <br/>
       <!-- Age is a calculated and numbers field -->
         <label>Age: </label><br/>
         <input type="text" name="age" id="age" class="form-control" readonly />
       <br/>
         <label>Gender </label><br/>
-        <select name="gender" class="form-control" id="gender">
+        <select name="gender" class="form-control" id="gender" required>
           <option value="Male" >Male</option>
           <option value="Female" >Female</option>
           <option value="Other" >Other</option>
@@ -172,17 +183,17 @@ if (isset(
       <br/>
       <label>
           Are you Pregnant? </label><br/>
-          <input type="radio" name="pregnant" id="yes_pregnant" value="Yes" /> Yes
-          <input type="radio" name="pregnant"  id="no_pregnant" value="No" /> No
-          <input type="radio" name="pregnant"  id="na_pregnant" value="N/A" /> N/A
+          <input type="radio" name="pregnant" id="yes_pregnant" value="Yes" required/> Yes
+          <input type="radio" name="pregnant"  id="no_pregnant" value="No" required/> No
+          <input type="radio" name="pregnant"  id="na_pregnant" value="N/A" required/> N/A
       <br/>
       <br/>
       <label>
         <!-- at this point i am able to show the input field to explain how your allergies are
         when you say you have them , -->
           Do you have for allergies? </label><br/>
-          <input type="radio" value="yes" name="allergies" onclick="yesnoCheck()" id="yesCheck"/> Yes
-          <input type="radio" value="no" name="allergies" onclick="yesnoCheck()" id="noCheck"/> No
+          <input type="radio" value="yes" name="allergies" onclick="yesnoCheck()" id="yesCheck" required/> Yes
+          <input type="radio" value="no" name="allergies" onclick="yesnoCheck()" id="noCheck" required/> No
           <div id="ifYes" style="visibility:hidden">If yes, explain you allergy:
           <input type='text' id='yes' name='yesallergy'/>    
       </div>
