@@ -1,0 +1,7 @@
+Kindly follow the steps below to successfully deploy the system
+1.Clone/Download the project folder from git at http://
+2.open the folder and find the db file named db.sql and restore to your phpmyAdmin(Mysql database).
+3.Kindly move/copy your cloned folder to your xampp server in the www folder (Windows people)
+and htdocs(The linux peole).
+4.Start your xampp server then in your browser check for http://localhost/strongminds you will 
+be able to access the form for collecting patient information.
